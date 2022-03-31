@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="Evaluación diagnóstica de Introducción al Desarrollo Front End con HTML, CSS y JavaScript" />
+        <meta name="keywords" content="HTML, CSS, JavaScript" />
+        <meta name="author" content="Erik Fernández" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="style.css" rel="stylesheet" />
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"
+            integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <title>Presentación Erik</title>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                background: rgb(200, 200, 200);
+                color: rgb(200, 200, 200);
+                font-family: monospace, sans-serif, arial;
+            }
+            h1 {
+                font-size: calc(2rem + 2vw);
+                color: white;
+                margin: 2rem;
+                font-weight: 900;
+                padding: 1rem 0 2rem 0;
+            }
+            p {
+                font-size: 1.2rem;
+                color: gray;
+                margin: 3rem;
+                font-weight: 700;
+            }
+            #cuadro {
+                float: none;
+                border: 0.25rem solid white;
+                padding: 0.5rem;
+                background-color: rgb(140,140,140);
+                margin-left: 2rem;
+                margin-right: 100rem;
+            }
+            p span#base {
+                text-decoration: underline;
+                font-size: 1.2rem;
+                color: rgb(80,80,80);
+            }
+            #container {
+                float: right;
+                border: 0,1rem solid gray;
+                padding: 2rem;
+                background-color: rgb(220, 220, 220);
+                margin-left: 2rem;
+                margin-right: 2.55rem;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>¿Dibujar?</h1>
+
+        <p>Lo fantástico del dibujo es que hay varias formas para llevarlo acabo. Mira este dibujo de un árbol:</p>
+
+        <img id= "cuadro" src="img/arbol.jpg" alt="Árbol" width="1000" />
+
+        <p><span id="base"></span></p>
+
+        <div id="uno"><a href="index.html">PORTADA</a></div>
+        <div id="otro">
+            <a href="page_1.html">01</a> / <strong><a href="page_2.html">02</a></strong> / <a href="page_3.html">03</a>
+        </div>
+
+        <div id= "container">
+        <a href="img/arbol.jpg" download="arbol.jpg">Descargar imagen</a>
+        </div>
+
+        <script>
+        function setup () {
+            createCanvas(1070, 500);
+            background(260);
+            document.getElementById("base").textContent += "¡Intenta replicando este árbol en el lienzo y observa nuestras distintas soluciones para el ejercicio!";
+        }
+
+        function draw() {
+            stroke(150);
+            if (mouseIsPressed === true) {
+                line(mouseX, mouseY, pmouseX, pmouseY);
+            }
+        }
+        function windowResized() {
+            resizeCanvas(windowWidth - 50, windowHeight - 50);
+        }
+        </script>
+    </body>
+</html>

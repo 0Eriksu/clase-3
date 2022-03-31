@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="Evaluación diagnóstica de Introducción al Desarrollo Front End con HTML, CSS y JavaScript" />
+        <meta name="keywords" content="HTML, CSS, JavaScript" />
+        <meta name="author" content="Erik Fernández" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="style.css" rel="stylesheet" />
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"
+            integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <title>Presentación Erik</title>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                background: rgb(200, 200, 200);
+                color: rgb(200, 200, 200);
+                font-family: monospace, sans-serif, arial;
+            }
+            h1 {
+                font-size: calc(2rem + 2vw);
+                color: white;
+                margin: 2rem;
+                font-weight: 900;
+                padding: 1rem 0 2rem 0;
+            }
+            p {
+                font-size: 1.2rem;
+                color: gray;
+                margin: 3rem;
+                font-weight: 700;
+            }
+            #imagen {
+                float: left;
+                border: 0.5rem solid gray;
+                padding: 0.2rem;
+                background-color: rgb(250,250,250);
+                margin-left: 2rem;
+                margin-right: 100rem;
+           }
+           #red {
+                float: left;
+                width: 10rem;
+                font-size: 1.2rem;
+                border: 0.25rem solid gray;
+                padding: 2rem;
+                background-color: rgb(220, 220, 220);
+                margin-left: 2rem;
+                margin-right: 2.55rem;
+           }
+           #container {
+                float: right;
+                border: 0,1rem solid gray;
+                padding: 2rem;
+                background-color: rgb(220, 220, 220);
+                margin-left: 2rem;
+                margin-right: 2.55rem;
+           }
+        </style>
+    </head>
+    <body>
+        <h1>¡Gracias por tu tiempo!</h1>
+
+        <p>Uno de los factores más importantes es el tiempo que dedicas a tu obra.</p>
+        <p>Dejo uno de mis últimos trabajos al cual invertí 3 horas.</p>
+
+        <img id= "imagen" src="img/carretera.jpg" alt="Carretera" width="1000" />
+
+        <p id= "red">
+        Ig: eriksukyre
+        </p>
+
+        <p id= "red">
+        Webtoon: Eriksu
+        </p>
+
+
+        <div id="uno"><a href="index.html">PORTADA</a></div>
+        <div id="otro">
+            <a href="page_1.html">01</a> / <a href="page_2.html">02</a> / <strong><a href="page_3.html">03</a></strong>
+        </div>
+
+        <div id= "container">
+        <a href="img/carretera.jpg" download="carretera.jpg">Descargar imagen</a>
+        </div>
+
+        <script>
+        let cx, cy;
+        let secondsRadius;
+        let minutesRadius;
+        let hoursRadius;
+        let clockDiameter;
+
+        function setup() {
+            createCanvas(500, 500);
+            stroke(255);
+
+            let radius = min(width, height) / 2;
+            secondsRadius = radius * 0.71;
+            minutesRadius = radius * 0.6;
+            hoursRadius = radius * 0.5;
+            clockDiameter = radius * 1.7;
+
+            cx = width / 2;
+            cy = height / 2;
+
+            createCanvas(500,500)
+                .position(800, 290)
+                .style("z-index", -1);
+        }
+
+        function draw() {
+            background(200,200,200);
+
+            noStroke();
+            fill(150, 150, 150);
+            ellipse(cx, cy, clockDiameter + 25, clockDiameter + 25);
+            fill(120, 120, 120);
+            ellipse(cx, cy, clockDiameter, clockDiameter);
+
+            let s = map(second(), 0, 60, 0, TWO_PI) - HALF_PI;
+            let m = map(minute() + norm(second(), 0, 60), 0, 60, 0, TWO_PI) - HALF_PI;
+            let h = map(hour() + norm(minute(), 0, 60), 0, 24, 0, TWO_PI * 2) - HALF_PI;
+
+            stroke(255);
+            strokeWeight(1);
+            line(cx, cy, cx + cos(s) * secondsRadius, cy + sin(s) * secondsRadius);
+            strokeWeight(2);
+            line(cx, cy, cx + cos(m) * minutesRadius, cy + sin(m) * minutesRadius);
+            strokeWeight(4);
+            line(cx, cy, cx + cos(h) * hoursRadius, cy + sin(h) * hoursRadius);
+
+            strokeWeight(2);
+            beginShape(POINTS);
+            for (let a = 0; a < 360; a += 6) {
+                let angle = radians(a);
+                let x = cx + cos(angle) * secondsRadius;
+                let y = cy + sin(angle) * secondsRadius;
+                vertex(x, y);
+            }
+            endShape();
+        function windowResized() {
+            resizeCanvas(windowWidth - 50, windowHeight - 50);
+            }
+        }
+        </script>
+    </body>
+</html>
